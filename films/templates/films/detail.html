@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 class="mb-4">Film detail information</h1>
+    <div class="card mb-4 shadow-sm">
+        <img
+            src="{{ film.image_url }}"
+            class="card-img-top img-fluid w-50 mx-auto"
+            alt="{{ film.name }}"
+        />
+        <div class="card-body">
+            <h5 class="card-title">{{ film.name }}</h5>
+
+            <p class="card-text">
+                <strong>Description:</strong> {{ film.description }}
+            </p>
+
+            <p class="card-text">
+                <strong>Category:</strong> {{ film.get_category_display }}
+            </p>
+
+            <p class="card-text">
+                <strong>Price:</strong> ${{ film.price }}
+            </p>
+
+            <p class="card-text">
+                <strong>Stock:</strong> {{ film.stock }} tickets available
+            </p>
+
+            <p class="card-text">
+                <strong>Show time:</strong> {{ film.show_time }}
+            </p>
+
+            <a href="/list/" class="btn btn-primary">Back to list</a>
+        </div>
+    </div>
+{% endblock %}

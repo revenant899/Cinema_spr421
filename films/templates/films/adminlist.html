@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 class="mb-4">Films</h1>
+
+<a href="/films/create/" class="btn btn-primary mb-3">Create Film</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Poster</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Show time</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for film in films %}
+    <tr class="align-middle">
+      <th>{{ film.id }}</th>
+
+      <td>
+        <img
+          class="rounded"
+          src="{% if film.image %}{{ film.image.url }}{% elif film.image_url %}{{ film.image_url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
+          alt="{{ film.name }}"
+          style="width: 50px; height: 50px; object-fit: cover"
+        />
+      </td>
+
+      <td>{{ film.name }}</td>
+
+      <td>{{ film.get_category_display }}</td>
+
+      <td>${{ film.price }}</td>
+
+      <td>
+        {% if film.stock > 10 %}
+          <span class="badge text-bg-success">{{ film.stock }}</span>
+        {% elif film.stock > 0 %}
+          <span class="badge text-bg-warning">{{ film.stock }}</span>
+        {% else %}
+          <span class="badge text-bg-danger">Sold out</span>
+        {% endif %}
+      </td>
+
+      <td>{{ film.show_time }}</td>
+
+      <td>
+        <a class="btn btn-sm text-bg-secondary" href="/films/update/{{ film.pk }}">
+          Edit
+        </a>
+        <a 
+          class="btn btn-sm text-bg-danger"
+          href="/films/delete/{{ film.pk }}">
+          Delete
+        </a>
+      </td>
+    </tr>
+
+    {% empty %}
+    <tr>
+      <td colspan="8" class="text-center">No films available</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

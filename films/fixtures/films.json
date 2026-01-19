@@ -1,0 +1,80 @@
+[
+    {
+        "model": "films.Film",
+        "pk": 1,
+        "fields": {
+            "name": "Inception",
+            "image_url": "https://picsum.photos/seed/inception/600/400",
+            "description": "A mind-bending thriller about dreams within dreams.",
+            "price": 10.00,
+            "stock": 10,
+            "category": "sci-fi",
+            "show_time": "2023-12-01T20:00:00Z"
+        }
+    },
+    {
+        "model": "films.Film",
+        "pk": 2,
+        "fields": {
+            "name": "The Godfather",
+            "image_url": "https://picsum.photos/seed/godfather/600/400",
+            "description": "An epic tale of a mafia family.",
+            "price": 15.00,
+            "stock": 40,
+            "category": "drama",
+            "show_time": "2023-12-05T19:30:00Z"
+        }
+    },
+    {
+        "model": "films.Film",
+        "pk": 3,
+        "fields": {
+            "name": "Toy Story",
+            "image_url": "https://picsum.photos/seed/toystory/600/400",
+            "description": "A heartwarming story about the secret life of toys.",
+            "price": 8.00,
+            "stock": 19,
+            "category": "animation",
+            "show_time": "2023-12-10T18:00:00Z"
+        }
+    },
+    {
+        "model": "films.Film",
+        "pk": 4,
+        "fields": {
+            "name": "Interstellar",
+            "image_url": "https://picsum.photos/seed/interstellar/600/400",
+            "description": "A journey through space and time to save humanity.",
+            "price": 12.00,
+            "stock": 0,
+            "category": "sci-fi",
+            "show_time": "2023-12-15T21:00:00Z"
+        }
+    },
+    {
+        "model": "films.Film",
+        "pk": 5,
+        "fields": {
+            "name": "Joker",
+            "image_url": "https://picsum.photos/seed/joker/600/400",
+            "description": "The origin story of Gotham’s most infamous villain.",
+            "price": 11.00,
+            "stock": 30,
+            "category": "drama",
+            "show_time": "2023-12-18T20:30:00Z"
+        }
+    },
+    {
+        "model": "films.Film",
+        "pk": 6,
+        "fields": {
+            "name": "Avengers: Endgame",
+            "image_url": "https://picsum.photos/seed/endgame/600/400",
+            "description": "The epic conclusion to the Avengers saga.",
+            "price": 14.00,
+            "stock": 30,
+            "category": "action",
+            "show_time": "2023-12-20T19:00:00Z"
+        }
+    }
+]
