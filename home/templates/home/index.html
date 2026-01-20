@@ -7,7 +7,15 @@
     {% for f in films %}
     <div class="col">
         <div class="card h-100 shadow-sm">
-            <img src="{{ f.image_url }}" class="card-img-top" alt="{{ f.name }}">
+            <img
+                class="rounded"
+                src="{% if f.image %}{{ f.image.url }}{% else %}
+                https://png.pngtree.com/png-vector/20221125/ourmid/
+                pngtree-no-image-available-icon-flatvector-illustration-
+                picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
+                alt="{{ f.name }}"
+                style="width: 350px; height: 350px; object-fit: cover"
+            />
             <div class="card-body">
                 <h5 class="card-title">{{ f.name }}</h5>
                 <p class="card-text">
@@ -15,7 +23,7 @@
                 </p>
                 <a href="{% url 'film_detail' film_id=f.id %}" class="btn btn-primary">
                     View Details
-                </a>
+                </a>    
             </div>
         </div>
     </div>

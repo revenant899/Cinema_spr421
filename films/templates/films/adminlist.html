@@ -27,7 +27,7 @@
       <td>
         <img
           class="rounded"
-          src="{% if film.image %}{{ film.image.url }}{% elif film.image_url %}{{ film.image_url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
+          src="{% if film.image %}{{ film.image.url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
           alt="{{ film.name }}"
           style="width: 50px; height: 50px; object-fit: cover"
         />
