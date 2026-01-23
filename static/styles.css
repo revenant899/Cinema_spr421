@@ -1,0 +1,8 @@
+.details-card img {
+    height: 400px;
+    object-fit: contain;
+}
+
+.details-card {
+    width: 100% !important;
+}

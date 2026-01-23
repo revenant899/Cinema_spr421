@@ -43,7 +43,7 @@
         "pk": 4,
         "fields": {
             "name": "Joker",
-            "image": "film_images/joker.webp",
+            "image": "film_images/joker.gif",
             "description": "The origin story of Gotham’s most infamous villain.",
             "price": 11.00,
             "stock": 30,

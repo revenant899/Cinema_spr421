@@ -6,7 +6,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('films/', include('films.urls')),
-    path('', include('home.urls'))
+    path('', include('home.urls')),
+    path('favorites/', include('favorites.urls')),
 ]
 
 

@@ -2,12 +2,11 @@
 
 {% block content %}
     <h1 class="mb-4">Film detail information</h1>
-    <div class="card mb-4 shadow-sm">
-        <img
-            src="{{ film.image.url }}"
-            class="card-img-top img-fluid w-50 mx-auto"
-            alt="{{ film.name }}"
-        />
+    <div class="card mb-4  w-75 shadow-sm details-card">
+        <img 
+        src="{% if film.image %}{{ film.image.url }}{% elif film.image_url %}{{ film.image_url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}" 
+        class="card-img-top" 
+        alt="Product Image" />
         <div class="card-body">
             <h5 class="card-title">{{ film.name }}</h5>
 
@@ -31,7 +30,7 @@
                 <strong>Show time:</strong> {{ film.show_time }}
             </p>
 
-            <a href="/list/" class="btn btn-primary">Back to list</a>
+            <a href={% url 'index' %} class="btn btn-primary">Back to list</a>
         </div>
     </div>
 {% endblock %}

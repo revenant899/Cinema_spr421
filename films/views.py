@@ -8,10 +8,9 @@ def admin_list(request):
     films = Film.objects.all()
     return render(request, 'films/adminlist.html', {'films': films})
 
-
 def film_detail(request, film_id):
-    films = Film.objects.all()
-    return render(request, 'films/detail.html', {'film': films[film_id - 1]})
+    film = get_object_or_404(Film, pk=film_id)
+    return render(request, 'films/detail.html', {'film': film})
 
 def film_delete(request, film_id):
     film = get_object_or_404(Film, pk=film_id)
