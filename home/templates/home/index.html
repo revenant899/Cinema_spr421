@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1 class="mb-4">Films (Fav: {{ fav_count }})</h1>
+<h1 class="mb-4">Films</h1>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     {% for f in films %}
@@ -27,15 +27,15 @@
                 </a>  
                 {% if f.id in fav_ids %}
                 <a
-                href="/favorites/remove/{{f.id}}/index"
-                class="btn btn-outline-success btn-sm"
-                >Unfavorite</a
+                    href="{% url 'remove_fav_film' f.id %}?next={{ request.path }}"
+                    class="btn btn-outline-success btn-sm"
+                    >Unfavorite</a
                 >
                 {% else %}
                 <a
-                href="/favorites/add/{{f.id}}/index"
-                class="btn btn-success btn-sm"
-                >Favorite</a
+                    href="{% url 'add_fav_film' f.id %}?next={{ request.path }}"
+                    class="btn btn-success btn-sm"
+                    >Favorite</a
                 >
                 {% endif %}
             </div>

@@ -6,16 +6,16 @@ def get_favorite_films(request):
 def get_count_of_favorite_films(request):
     return len(get_favorite_films(request))
 
-def add_film_to_favorites(request, product_id):
+def add_film_to_favorites(request, film_id):
     favoriteIds = get_favorite_films(request)
-    if product_id not in favoriteIds:
-        favoriteIds.append(product_id)
+    if film_id not in favoriteIds:
+        favoriteIds.append(film_id)
         request.session[FAVORITE_FILMS_KEY] = favoriteIds
     request.session.modified = True
 
-def remove_film_from_favorites(request, product_id):
+def remove_film_from_favorites(request, film_id):
     favoriteIds = get_favorite_films(request)
-    if product_id in favoriteIds:
-        favoriteIds.remove(product_id)
+    if film_id in favoriteIds:
+        favoriteIds.remove(film_id)
         request.session[FAVORITE_FILMS_KEY] = favoriteIds
     request.session.modified = True
