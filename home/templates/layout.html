@@ -32,6 +32,19 @@
             >Favorites ({{ favorite_count }})</a
           >
         </li>
+                <li class="nav-item">
+          <form class="d-flex gap-2" method="get" action="{% url 'index' %}">
+            <select class="form-select form-select-sm" name="category" onchange="this.form.submit()">
+              <option value="">All Categories</option>
+              {% for code, label in categories %}
+                <option value="{{ code }}" {% if selected_category == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            {% if request.GET.filter_text %}
+              <input type="hidden" name="filter_text" value="{{ request.GET.filter_text }}">
+            {% endif %}
+          </form>
+        </li>
       </ul>
       <form class="d-flex" role="search" method="get" action="{% url 'index' %}">
         <input class="form-control me-2" type="search" placeholder="Search" name="filter_text"/>
