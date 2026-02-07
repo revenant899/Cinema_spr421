@@ -1,4 +1,16 @@
-{% extends "layout.html" %} {% block content %}
-<h1 class="mb-4">Create New Film</h1>
-{% include "components/film_form.html" with submit_button_text="Create Film" %}
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container-fluid px-4">
+  <div class="bg-dark rounded-4 p-4 w-75">
+
+    <h2 class="fw-semibold mb-4">
+      🎬 Create New Film
+    </h2>
+
+    {% include "components/film_form.html" with submit_button_text="Create Film" %}
+
+  </div>
+</div>
+
 {% endblock %}

@@ -1,74 +1,116 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1 class="mb-4">Films</h1>
+<div class="bg-dark rounded-4 p-4">
 
-<a href="/films/create/" class="btn btn-primary mb-3">Create Film</a>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0 fw-semibold">🎬 Films</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Poster</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Show time</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+    <a href="/films/create/" class="btn btn-danger rounded-pill px-4">
+      + Create Film
+    </a>
+  </div>
 
-  <tbody>
-    {% for film in films %}
-    <tr class="align-middle">
-      <th>{{ film.id }}</th>
+  <div class="table-responsive">
+    <table class="table table-dark table-hover align-middle mb-0">
+      <thead class="border-bottom border-secondary">
+        <tr class="text-secondary small text-uppercase">
+          <th>#</th>
+          <th>Poster</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Show time</th>
+          <th>stars</th>
+          <th>type</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
 
-      <td>
-        <img
-          class="rounded"
-          src="{% if film.image %}{{ film.image.url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
-          alt="{{ film.name }}"
-          style="width: 50px; height: 50px; object-fit: cover"
-        />
-      </td>
+      <tbody>
+        {% for film in films %}
+        <tr>
+          <td class="text-secondary">{{ film.id }}</td>
 
-      <td>{{ film.name }}</td>
+          <td>
+            <img
+              class="rounded-3"
+              src="{% if film.image %}{{ film.image.url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
+              alt="{{ film.name }}"
+              style="width: 48px; height: 64px; object-fit: cover"
+            />
+          </td>
 
-      <td>{{ film.get_category_display }}</td>
+          <td class="fw-semibold">{{ film.name }}</td>
 
-      <td>${{ film.price }}</td>
+          <td class="text-secondary">
+            {{ film.get_category_display }}
+          </td>
 
-      <td>
-        {% if film.stock > 10 %}
-          <span class="badge text-bg-success">{{ film.stock }}</span>
-        {% elif film.stock > 0 %}
-          <span class="badge text-bg-warning">{{ film.stock }}</span>
-        {% else %}
-          <span class="badge text-bg-danger">Sold out</span>
-        {% endif %}
-      </td>
+          <td>${{ film.price }}</td>
 
-      <td>{{ film.show_time }}</td>
+          <td>
+            {% if film.stock > 10 %}
+              <span class="badge rounded-pill text-bg-success px-3">
+                {{ film.stock }}
+              </span>
+            {% elif film.stock > 0 %}
+              <span class="badge rounded-pill text-bg-warning px-3">
+                {{ film.stock }}
+              </span>
+            {% else %}
+              <span class="badge rounded-pill text-bg-danger px-3">
+                Sold out
+              </span>
+            {% endif %}
+          </td>
 
-      <td>
-        <a class="btn btn-sm text-bg-secondary" href="/films/update/{{ film.pk }}">
-          Edit
-        </a>
-        <a 
-          class="btn btn-sm text-bg-danger"
-          href="/films/delete/{{ film.pk }}">
-          Delete
-        </a>
-      </td>
-    </tr>
+          <td class="text-secondary">{{ film.show_time }}</td>
 
-    {% empty %}
-    <tr>
-      <td colspan="8" class="text-center">No films available</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+          <td>
+            {% for i in "12345" %}
+              {% if film.star >= forloop.counter %}
+                <span class="text-warning">★</span>
+              {% else %}
+                <span class="text-secondary">☆</span>
+              {% endif %}
+            {% endfor %}
+          </td>
+          <td>
+            {% if film.type == "3D" %}
+              <span class="badge bg-danger rounded-pill px-3">3D</span>
+            {% else %}
+              <span class="badge bg-secondary rounded-pill px-3">2D</span>
+            {% endif %}
+          </td>
+
+          <td class="text-end">
+            <a
+              class="btn btn-sm btn-outline-light rounded-pill me-2"
+              href="/films/update/{{ film.pk }}">
+              Edit
+            </a>
+
+            <a
+              class="btn btn-sm btn-danger rounded-pill"
+              href="/films/delete/{{ film.pk }}">
+              Delete
+            </a>
+          </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+          <td colspan="8" class="text-center text-secondary py-5">
+            No films available
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
 
 {% endblock %}

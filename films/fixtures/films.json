@@ -9,7 +9,8 @@
             "price": 9.50,
             "stock": 40,
             "category": "animation",
-            "show_time": "2023-12-19T17:00:00Z"
+            "show_time": "2023-12-19T17:00:00Z",
+            "star": 3
         }
     },
     {
@@ -22,7 +23,8 @@
             "price": 10.50,
             "stock": 35,
             "category": "action",
-            "show_time": "2023-12-19T20:00:00Z"
+            "show_time": "2023-12-19T20:00:00Z",
+            "star": 2
         }
     },
     {
@@ -35,7 +37,8 @@
             "price": 8.00,
             "stock": 25,
             "category": "drama",
-            "show_time": "2023-12-20T18:30:00Z"
+            "show_time": "2023-12-20T18:30:00Z",
+            "star": 4
         }
     },
     {
@@ -43,12 +46,13 @@
         "pk": 4,
         "fields": {
             "name": "Joker",
-            "image": "film_images/joker.gif",
+            "image": "film_images/453.jpg",
             "description": "The origin story of Gotham’s most infamous villain.",
             "price": 11.00,
             "stock": 30,
             "category": "drama",
-            "show_time": "2023-12-18T20:30:00Z"
+            "show_time": "2023-12-18T20:30:00Z",
+            "star": 5
         }
     },
     {
@@ -61,7 +65,8 @@
             "price": 12.00,
             "stock": 50,
             "category": "sci-fi",
-            "show_time": "2023-12-20T21:00:00Z"
+            "show_time": "2023-12-20T21:00:00Z",
+            "star": 3
         }
     },
     {
@@ -74,7 +79,8 @@
             "price": 9.00,
             "stock": 45,
             "category": "adventure",
-            "show_time": "2023-12-21T19:00:00Z"
+            "show_time": "2023-12-21T19:00:00Z",
+            "star": 4
         }
     }
 ]

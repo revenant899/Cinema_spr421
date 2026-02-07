@@ -5,72 +5,101 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Films</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'styles.css' %}" />
-    {% block styles%}
-    {% endblock %}
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href={% url 'index' %}>List</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href={% url 'admin_list' %}>AdminList</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'favorites' %}"
-            >Favorites ({{ favorite_count }})</a
-          >
-        </li>
-                <li class="nav-item">
-          <form class="d-flex gap-2" method="get" action="{% url 'index' %}">
-            <select class="form-select form-select-sm" name="category" onchange="this.form.submit()">
-              <option value="">All Categories</option>
-              {% for code, label in categories %}
-                <option value="{{ code }}" {% if selected_category == code %}selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
-            {% if request.GET.filter_text %}
-              <input type="hidden" name="filter_text" value="{{ request.GET.filter_text }}">
-            {% endif %}
-          </form>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" method="get" action="{% url 'index' %}">
-        <input class="form-control me-2" type="search" placeholder="Search" name="filter_text"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
 
-    <main class="container py-4">
-        {% block content %}
-        {% endblock %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    {% block styles %}{% endblock %}
+  </head>
+
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom border-secondary">
+      <div class="container-fluid px-4">
+
+        <a class="navbar-brand fw-bold text-danger fs-4" href="{% url 'index' %}">
+          CINEMA
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
+            <li class="nav-item">
+              <a class="btn btn-outline-light btn-sm px-3 rounded-pill"
+                href="{% url 'admin_list' %}">
+                Admin
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="btn btn-danger btn-sm px-3 rounded-pill"
+                href="{% url 'favorites' %}">
+                Favorites <span class="fw-semibold">({{ favorite_count }})</span>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <form class="d-flex align-items-center gap-2 bg-black px-3 py-1 rounded-pill border border-secondary" method="get" action="{% url 'index' %}">
+                <select class="form-select form-select-sm bg-black text-light border-0"
+                        name="category"
+                        onchange="this.form.submit()">
+                  <option value="">All</option>
+                  {% for code, label in categories %}
+                    <option value="{{ code }}" {% if selected_category == code %}selected{% endif %}>
+                      {{ label }}
+                    </option>
+                  {% endfor %}
+                </select>
+
+                {% if request.GET.filter_text %}
+                  <input type="hidden" name="filter_text" value="{{ request.GET.filter_text }}">
+                {% endif %}
+              </form>
+            </li>
+          </ul>
+
+          <form class="d-flex gap-2" method="get" action="{% url 'index' %}">
+            <input
+              class="form-control form-control-sm bg-black text-light border-secondary"
+              type="search"
+              placeholder="Search movie..."
+              name="filter_text"
+            />
+            <button class="btn btn-danger btn-sm" type="submit">
+              Search
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="container-fluid pt-5 mt-4 px-4 bg-black flex-grow-1">
+      {% block content %}{% endblock %}
     </main>
 
-    <footer class="container py-4">
-      <p class="text-muted mb-0">© 2025 Online Cinema</p>
+    <!-- FOOTER -->
+    <footer class="container-fluid px-4 py-3 border-top border-secondary">
+      <p class="text-secondary small mb-0">© 2025 Online Cinema</p>
     </footer>
 
     {% include "components/toast.html" %}
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    {% block scripts %}
-    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

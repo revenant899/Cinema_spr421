@@ -1,36 +1,75 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1 class="mb-4">Film detail information</h1>
-    <div class="card mb-4  w-75 shadow-sm details-card">
-        <img 
-        src="{% if film.image %}{{ film.image.url }}{% elif film.image_url %}{{ film.image_url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}" 
-        class="card-img-top" 
-        alt="Product Image" />
-        <div class="card-body">
-            <h5 class="card-title">{{ film.name }}</h5>
+<div class="container-fluid px-4">
 
-            <p class="card-text">
-                <strong>Description:</strong> {{ film.description }}
-            </p>
+  <div class="bg-dark rounded-4 p-4 w-75">
 
-            <p class="card-text">
-                <strong>Category:</strong> {{ film.get_category_display }}
-            </p>
+    <div class="row g-4">
 
-            <p class="card-text">
-                <strong>Price:</strong> ${{ film.price }}
-            </p>
+      <!-- POSTER -->
+      <div class="col-md-4">
+        <img
+          src="{% if film.image %}{{ film.image.url }}{% elif film.image_url %}{{ film.image_url }}{% else %}https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg{% endif %}"
+          class="img-fluid rounded-3 shadow"
+          alt="{{ film.name }}"
+        />
+      </div>
 
-            <p class="card-text">
-                <strong>Stock:</strong> {{ film.stock }} tickets available
-            </p>
+      <!-- INFO -->
+      <div class="col-md-8">
+        <h2 class="fw-bold mb-3">{{ film.name }}</h2>
 
-            <p class="card-text">
-                <strong>Show time:</strong> {{ film.show_time }}
-            </p>
+        <p class="text-secondary mb-3">
+          {{ film.description }}
+        </p>
 
-            <a href={% url 'index' %} class="btn btn-primary">Back to list</a>
-        </div>
+        <ul class="list-unstyled small">
+          <li class="mb-2">
+            <strong class="text-light">Category:</strong>
+            <span class="text-secondary">{{ film.get_category_display }}</span>
+          </li>
+
+          <li class="mb-2">
+            <strong class="text-light">Price:</strong>
+            <span class="text-danger fw-semibold">${{ film.price }}</span>
+          </li>
+
+          <li class="mb-2">
+            <strong class="text-light">Stock:</strong>
+            <span class="text-secondary">{{ film.stock }} tickets</span>
+          </li>
+
+          <li class="mb-3">
+            <strong class="text-light">Show time:</strong>
+            <span class="text-secondary">{{ film.show_time }}</span>
+          </li>
+        </ul>
+        <div class="mb-3">
+        {% for i in "12345" %}
+          {% if film.star >= forloop.counter %}
+            <span class="text-warning fs-4">★</span>
+          {% else %}
+            <span class="text-secondary fs-4">☆</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <li class="mb-2">
+        <strong class="text-light">Format:</strong>
+        {% if film.type == "3D" %}
+          <span class="badge bg-danger rounded-pill px-3">3D</span>
+        {% else %}
+          <span class="badge bg-secondary rounded-pill px-3">2D</span>
+        {% endif %}
+      </li>
+        <a href="{% url 'index' %}" class="btn btn-outline-light rounded-pill px-4">
+          ← Back to list
+        </a>
+      </div>
+
     </div>
+
+  </div>
+
+</div>
 {% endblock %}
